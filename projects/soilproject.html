@@ -1,1 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: The Ground Beneath</title>
+    <style>
+        :root {
+            --primary-color: #5D4037; /* Earthy Brown */
+            --secondary-color: #388E3C; /* Growth Green */
+            --accent-color: #FF7043; /* Clay Orange */
+            --bg-color: #f4f4f9;
+            --text-color: #333;
+            --light-bg: #ffffff;
+        }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        /* Header Styling */
+        header {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--primary-color);
+            display: flex;
+            justify-content: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background-color: var(--accent-color);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Sections */
+        section {
+            background: var(--light-bg);
+            margin-bottom: 2rem;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            margin-top: 1.5rem;
+        }
+
+        /* Region Grid */
+        .region-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .region-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .region-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+            border-color: var(--secondary-color);
+        }
+
+        .region-card h4 {
+            color: var(--accent-color);
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+        }
+
+        /* Pillars of Research */
+        .pillars {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .pillar {
+            flex: 1;
+            min-width: 280px;
+            background-color: #fafafa;
+            padding: 1.5rem;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        /* Rubric Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: #333;
+            color: white;
+            margin-top: 3rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        
+        .btn:hover {
+            background-color: #2e7d32;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>The Ground Beneath</h1>
+    <p>A Global Soil Research Project | Geology 11/12</p>
+</header>
+
+<nav>
+    <a href="#overview">Overview</a>
+    <a href="#regions">Select Region</a>
+    <a href="#research">Research Tasks</a>
+    <a href="#rubric">Grading Rubric</a>
+</nav>
+
+<div class="container">
+
+    <section id="overview">
+        <h2>The Mission: Geo-Consulting</h2>
+        <p><strong>Scenario:</strong> You are a geological consultant hired to analyze a specific region of the world. Your client needs to understand the fundamental nature of the ground before they can invest in agriculture or infrastructure projects there.</p>
+        <p><strong>The Question:</strong> <em>How does the specific geology of your region dictate the lifestyle, food, and safety of the people living there?</em></p>
+        <p><strong>Deliverable:</strong> You will produce a digital report (PDF or Slide Deck) covering the three pillars of investigation listed below.</p>
+    </section>
+
+    <section id="regions">
+        <h2>Phase 1: Choose Your Region</h2>
+        <p>Select <strong>one</strong> of the following regions. No two students in a breakout group may have the same region.</p>
+        
+        <div class="region-grid">
+            <div class="region-card">
+                <h4>Great Plains, USA</h4>
+                <p><strong>Soil Type:</strong> Mollisols</p>
+                <p>The "Breadbasket of the World." Rich, dark soils formed by grasslands.</p>
+            </div>
+            <div class="region-card">
+                <h4>Amazon Basin, Brazil</h4>
+                <p><strong>Soil Type:</strong> Oxisols</p>
+                <p>Ancient, highly weathered red soils. High iron, low nutrients.</p>
+            </div>
+            <div class="region-card">
+                <h4>Sicily, Italy</h4>
+                <p><strong>Soil Type:</strong> Andisols</p>
+                <p>Soils born from fire. Volcanic ash, highly porous and fertile.</p>
+            </div>
+            <div class="region-card">
+                <h4>The Sahel, Africa</h4>
+                <p><strong>Soil Type:</strong> Aridisols</p>
+                <p>Desert soils. Dry, salty, and facing the challenge of desertification.</p>
+            </div>
+            <div class="region-card">
+                <h4>Peatlands, Ireland</h4>
+                <p><strong>Soil Type:</strong> Histosols</p>
+                <p>Wet, organic soils made of decomposing plant matter. High carbon.</p>
+            </div>
+            <div class="region-card">
+                <h4>Loess Plateau, China</h4>
+                <p><strong>Soil Type:</strong> Entisols</p>
+                <p>Wind-blown silt deposits. Highly erodible but historically significant.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="research">
+        <h2>Phase 2: The Three Pillars of Investigation</h2>
+        <p>Your report must address these three specific areas of study:</p>
+
+        <div class="pillars">
+            <div class="pillar">
+                <h3>1. The Geology (The "What")</h3>
+                <p>Identify the scientific classification and composition.</p>
+                <ul>
+                    <li><strong>Taxonomy:</strong> What is the official Soil Order name?</li>
+                    <li><strong>CLORPT:</strong> Which factor (Climate, Organisms, Relief, Parent Material, Time) was the most dominant in creating this soil?</li>
+                    <li><strong>Profile:</strong> Describe the horizons. What color is it and why? (e.g., Red = Iron).</li>
+                </ul>
+            </div>
+
+            <div class="pillar">
+                <h3>2. The Harvest (The "Food")</h3>
+                <p>Analyze the agricultural economy.</p>
+                <ul>
+                    <li><strong>Native Crops:</strong> What grows best here naturally?</li>
+                    <li><strong>Deficiencies:</strong> What nutrients is the soil missing? Do farmers need specific fertilizers?</li>
+                    <li><strong>The Meal:</strong> Propose a "Dinner Plate" containing only foods that can be grown in this specific soil.</li>
+                </ul>
+            </div>
+
+            <div class="pillar">
+                <h3>3. The Infrastructure (The "Build")</h3>
+                <p>Evaluate engineering constraints.</p>
+                <ul>
+                    <li><strong>Stability:</strong> Is the soil prone to "Shrink-Swell" (cracking foundations) or Liquefaction (earthquakes)?</li>
+                    <li><strong>Materials:</strong> How have traditional cultures used this soil to build? (e.g., Adobe, brick, stilts).</li>
+                    <li><strong>Hazards:</strong> Are there sinkholes, landslides, or erosion risks?</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="resources">
+        <h2>Resources</h2>
+        <p>Use these tools to gather your data:</p>
+        <ul>
+            <li><a href="https://websoilsurvey.sc.egov.usda.gov/" target="_blank">USDA Web Soil Survey</a> (For US Regions)</li>
+            <li><a href="https://www.isric.org/explore/soilgeographic-databases" target="_blank">ISRIC - World Soil Information</a> (Global Data)</li>
+            <li><a href="https://casoilresource.lawr.ucdavis.edu/gmap/" target="_blank">SoilWeb Earth</a></li>
+        </ul>
+    </section>
+
+    <section id="rubric">
+        <h2>Phase 3: Grading Rubric</h2>
+        <p>Total Points: 100</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 20%;">Criteria</th>
+                    <th style="width: 20%;">Excellent (25 pts)</th>
+                    <th style="width: 20%;">Proficient (20 pts)</th>
+                    <th style="width: 20%;">Developing (15 pts)</th>
+                    <th style="width: 20%;">Incomplete (10 pts)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Geological Accuracy</strong></td>
+                    <td>Correctly identifies Taxonomy, Formation Factors, and Horizon details with scientific depth.</td>
+                    <td>Identifies Taxonomy and Factors but lacks detail on Horizons or specific composition.</td>
+                    <td>General description of soil provided, but lacks scientific terminology or Taxonomy.</td>
+                    <td>Incorrect soil identification or missing major geological concepts.</td>
+                </tr>
+                <tr>
+                    <td><strong>Agricultural Analysis</strong></td>
+                    <td>Connects soil chemistry directly to crop success/failure. Creative "Dinner Plate" example.</td>
+                    <td>Lists crops grown in the region but lacks explanation of <em>why</em> the soil supports them.</td>
+                    <td>Lists crops that do not actually grow in that region or misses the soil connection.</td>
+                    <td>Section missing or lists generic foods only.</td>
+                </tr>
+                <tr>
+                    <td><strong>Engineering & Infrastructure</strong></td>
+                    <td>Detailed analysis of hazards (liquefaction, erosion) and historical building methods.</td>
+                    <td>Mentions building materials but misses the geological hazard aspect.</td>
+                    <td>Vague reference to buildings (e.g., "houses are made of wood") without soil context.</td>
+                    <td>Section missing.</td>
+                </tr>
+                <tr>
+                    <td><strong>Visuals & Professionalism</strong></td>
+                    <td>Report is visually stunning, uses maps, diagrams, and is cited correctly.</td>
+                    <td>Report is clean and organized, includes some images. Minor citation errors.</td>
+                    <td>Report is text-heavy, disorganized, or lacks necessary maps/images.</td>
+                    <td>Formatting makes the report difficult to read. No citations.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+</div>
+
+<footer>
+    <p>&copy; 2024 Geology Dept. | Winter Virtual Lab Series</p>
+</footer>
+
+</body>
+</html>
