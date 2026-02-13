@@ -1,326 +1,535 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Volcano Research Project Hub</title>
 
-const Section = ({ id, title, children }) => (
-  <section id={id} className="scroll-mt-24">
-    <Card className="rounded-2xl shadow-lg">
-      <CardContent className="p-6 space-y-4">
-        <h2 className="text-2xl font-semibold text-slate-900 border-b-4 border-emerald-600 pb-2">
-          {title}
-        </h2>
-        {children}
-      </CardContent>
-    </Card>
-  </section>
-);
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
 
-export default function VolcanoProjectSite() {
-  const nav = [
-    { id: "overview", label: "Overview" },
-    { id: "tasks", label: "Project Tasks" },
-    { id: "timeline", label: "Timeline" },
-    { id: "rubric", label: "Rubric" },
-  ];
+  <style>
+    .nav-link{
+      display:block; padding:0.5rem 1rem; border-radius:0.375rem;
+      font-weight:500; color:#374151; transition:all .2s; cursor:pointer;
+    }
+    .nav-link:hover{ background-color:#f3f4f6; color:#111827; }
+    .nav-link.active{
+      background-color:#f97316; color:#fff;
+      box-shadow:0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -1px rgba(0,0,0,.06);
+    }
+    .page-content{ animation:fadeIn .35s ease-in-out; }
+    @keyframes fadeIn{
+      from{ opacity:0; transform:translateY(10px); }
+      to{ opacity:1; transform:translateY(0); }
+    }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+  </style>
+</head>
 
-  return (
-    <div className="min-h-screen bg-slate-50 text-slate-900">
-      {/* Hero */}
-      <header className="relative overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1461887046916-c7426e65460d?auto=format&fit=crop&w=1600&q=80"
-            alt="Volcano landscape"
-            className="h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/60" />
-        </div>
+<body class="bg-slate-50 font-sans text-slate-800">
+<div class="flex h-screen bg-white">
 
-        <div className="relative max-w-5xl mx-auto px-6 py-16 text-center text-white">
-          <motion.h1
-            initial={{ opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-bold tracking-wide uppercase"
-          >
-            Volcano Research Project
-          </motion.h1>
-          <p className="mt-4 text-lg md:text-xl max-w-3xl mx-auto">
-            A research + model + teaching project for Geology 11/12 (Groups of 2–3)
-          </p>
-        </div>
-      </header>
+  <!-- Sidebar -->
+  <nav class="w-72 h-full bg-slate-100 p-5 shadow-lg flex flex-col gap-4 overflow-y-auto border-r border-slate-300">
 
-      {/* Sticky Nav */}
-      <nav className="sticky top-0 z-50 bg-amber-950 text-white shadow">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="flex flex-wrap justify-center gap-2 py-3">
-            {nav.map((n) => (
-              <a
-                key={n.id}
-                href={`#${n.id}`}
-                className="px-4 py-2 rounded-xl font-semibold hover:bg-orange-500 transition"
-              >
-                {n.label}
-              </a>
-            ))}
-          </div>
-        </div>
-      </nav>
+    <!-- Change this link to your course home -->
+    <a href="/geology/index.html" class="mb-2 flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-orange-600 transition">
+      <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Course
+    </a>
 
-      <main className="max-w-5xl mx-auto p-6 space-y-8">
-        <Section id="overview" title="The Mission: Be the Expert">
-          <p>
-            <strong>Scenario:</strong> Your team has been hired as a science communication group.
-            Your job is to explain a real volcano to the public: how it works, what it has done in the past,
-            and what risks and benefits it creates for people living in the surrounding region.
-          </p>
-          <p>
-            <strong>Driving Question:</strong> <em>How does your volcano’s geology shape human life in its region?</em>
-          </p>
-          <div className="grid md:grid-cols-3 gap-4">
-            {[
-              { t: "Science", d: "Plate setting, magma type, eruption style, hazards" },
-              { t: "Humans", d: "Culture, religion, food, jobs, risk adaptation" },
-              { t: "Teaching", d: "Your presentation + worksheet teaches the class" },
-            ].map((c) => (
-              <div key={c.t} className="bg-slate-100 rounded-2xl p-4 border-l-4 border-amber-950">
-                <h3 className="font-semibold text-emerald-700 text-lg">{c.t}</h3>
-                <p className="mt-1 text-slate-700">{c.d}</p>
-              </div>
-            ))}
-          </div>
-        </Section>
+    <h1 class="text-2xl font-bold text-orange-700 border-b border-orange-200 pb-2">Volcano Project Hub</h1>
 
-        <Section id="tasks" title="What You Must Produce">
-          <p>Each group (2–3 students) turns in the following four parts:</p>
-          <ol className="list-decimal pl-6 space-y-2">
-            <li>
-              <strong>Guided Research Packet</strong> (your evidence + notes)
-            </li>
-            <li>
-              <strong>Volcano Model</strong> (shows internal structure; eruption optional)
-            </li>
-            <li>
-              <strong>5–7 Minute Presentation</strong> (teach the class; everyone speaks)
-            </li>
-            <li>
-              <strong>Student Worksheet + Answer Key</strong> (class completes during your talk)
-            </li>
-          </ol>
-
-          <div className="bg-orange-50 border border-orange-200 rounded-2xl p-4">
-            <p className="font-semibold">Non-negotiables</p>
-            <ul className="list-disc pl-6 mt-2 space-y-1">
-              <li>Accuracy beats decoration.</li>
-              <li>Slides support your speaking — do not read slides.</li>
-              <li>Your worksheet must be approved before presentation day.</li>
-            </ul>
-          </div>
-        </Section>
-
-        <Section id="timeline" title="Timeline (4–5 Class Days)">
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="bg-white rounded-2xl p-4 border">
-              <h3 className="text-lg font-semibold text-emerald-700">Work Days (3)</h3>
-              <ul className="list-disc pl-6 mt-2 space-y-1">
-                <li>Day 1: Research Sections 1–3 + start slide outline</li>
-                <li>Day 2: Research Sections 4–7 + start model plan</li>
-                <li>Day 3: Build model + finalize slides + build worksheet + answer key</li>
-              </ul>
-            </div>
-            <div className="bg-white rounded-2xl p-4 border">
-              <h3 className="text-lg font-semibold text-emerald-700">Presentation Days (2)</h3>
-              <ul className="list-disc pl-6 mt-2 space-y-1">
-                <li>5–7 minutes per group</li>
-                <li>Class completes your worksheet during/after your talk</li>
-                <li>Short Q&amp;A: be ready to defend your claims</li>
-              </ul>
-            </div>
-          </div>
-        </Section>
-
-        <Section id="rubric" title="Grading Rubric (Performance Levels)">
-          <p>
-            Total = <strong>100 points</strong>. Each category is scored using the performance levels below.
-            Your goal is to be specific, accurate, and easy to understand.
-          </p>
-
-          <div className="overflow-auto rounded-2xl border bg-white">
-            <table className="w-full border-collapse text-sm">
-              <thead>
-                <tr className="bg-amber-950 text-white">
-                  <th className="p-3 text-left w-[16%]">Criteria</th>
-                  <th className="p-3 text-left w-[21%]">Exceeds</th>
-                  <th className="p-3 text-left w-[21%]">Meets</th>
-                  <th className="p-3 text-left w-[21%]">Developing</th>
-                  <th className="p-3 text-left w-[21%]">Missing / Incomplete</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="odd:bg-slate-50">
-                  <td className="p-3 align-top font-semibold">Guided Research (30)</td>
-                  <td className="p-3 align-top">
-                    <strong>30–27</strong>
-                    <ul className="list-disc pl-5 mt-1 space-y-1">
-                      <li>All sections complete and accurate</li>
-                      <li>Plate setting + magma type clearly explained (why, not just what)</li>
-                      <li>Hazards + monitoring are specific and correct</li>
-                      <li>Culture is about the <em>region/country</em> and connects to geology</li>
-                    </ul>
-                  </td>
-                  <td className="p-3 align-top">
-                    <strong>26–22</strong>
-                    <ul className="list-disc pl-5 mt-1 space-y-1">
-                      <li>Most sections complete and mostly accurate</li>
-                      <li>Correct plate setting + volcano type named</li>
-                      <li>Hazards listed with some explanation</li>
-                      <li>Culture included but connections are basic</li>
-                    </ul>
-                  </td>
-                  <td className="p-3 align-top">
-                    <strong>21–16</strong>
-                    <ul className="list-disc pl-5 mt-1 space-y-1">
-                      <li>Several sections incomplete or vague</li>
-                      <li>Errors in plate setting, magma, or eruption style</li>
-                      <li>Monitoring/hazards are generic</li>
-                      <li>Culture is minimal or not regional</li>
-                    </ul>
-                  </td>
-                  <td className="p-3 align-top">
-                    <strong>15–0</strong>
-                    <ul className="list-disc pl-5 mt-1 space-y-1">
-                      <li>Large parts missing or copied without understanding</li>
-                      <li>Major scientific inaccuracies</li>
-                      <li>No meaningful culture/region info</li>
-                    </ul>
-                  </td>
-                </tr>
-
-                <tr className="odd:bg-slate-50">
-                  <td className="p-3 align-top font-semibold">Model (25)</td>
-                  <td className="p-3 align-top">
-                    <strong>25–23</strong>
-                    <ul className="list-disc pl-5 mt-1 space-y-1">
-                      <li>Accurate volcano shape/type for assigned volcano</li>
-                      <li>Clearly labeled: chamber, conduit, vent, crater</li>
-                      <li>Includes hazards/flows/layers appropriate to volcano</li>
-                      <li>Neat, sturdy, and easy to interpret</li>
-                    </ul>
-                  </td>
-                  <td className="p-3 align-top">
-                    <strong>22–19</strong>
-                    <ul className="list-disc pl-5 mt-1 space-y-1">
-                      <li>Correct overall type and most key labels</li>
-                      <li>Mostly accurate features</li>
-                      <li>Construction is solid</li>
-                    </ul>
-                  </td>
-                  <td className="p-3 align-top">
-                    <strong>18–13</strong>
-                    <ul className="list-disc pl-5 mt-1 space-y-1">
-                      <li>Some correct features but several missing labels</li>
-                      <li>Model matches “generic volcano” more than assigned volcano</li>
-                      <li>Messy or hard to read</li>
-                    </ul>
-                  </td>
-                  <td className="p-3 align-top">
-                    <strong>12–0</strong>
-                    <ul className="list-disc pl-5 mt-1 space-y-1">
-                      <li>Missing model or missing most required features</li>
-                      <li>Not labeled / inaccurate</li>
-                    </ul>
-                  </td>
-                </tr>
-
-                <tr className="odd:bg-slate-50">
-                  <td className="p-3 align-top font-semibold">Presentation (25)</td>
-                  <td className="p-3 align-top">
-                    <strong>25–23</strong>
-                    <ul className="list-disc pl-5 mt-1 space-y-1">
-                      <li>Clear teaching voice; explains cause/effect</li>
-                      <li>Uses map + images/diagrams effectively</li>
-                      <li>All members speak; smooth teamwork</li>
-                      <li>Within 5–7 minutes; answers questions confidently</li>
-                    </ul>
-                  </td>
-                  <td className="p-3 align-top">
-                    <strong>22–19</strong>
-                    <ul className="list-disc pl-5 mt-1 space-y-1">
-                      <li>Mostly clear; minor reading or pacing issues</li>
-                      <li>Includes required visuals</li>
-                      <li>Most members participate</li>
-                    </ul>
-                  </td>
-                  <td className="p-3 align-top">
-                    <strong>18–13</strong>
-                    <ul className="list-disc pl-5 mt-1 space-y-1">
-                      <li>Frequently reads slides or unclear explanations</li>
-                      <li>Missing key required element (map/hazards/etc.)</li>
-                      <li>Uneven participation</li>
-                    </ul>
-                  </td>
-                  <td className="p-3 align-top">
-                    <strong>12–0</strong>
-                    <ul className="list-disc pl-5 mt-1 space-y-1">
-                      <li>Too short/long, off-topic, or incomplete</li>
-                      <li>Little evidence of preparation</li>
-                    </ul>
-                  </td>
-                </tr>
-
-                <tr className="odd:bg-slate-50">
-                  <td className="p-3 align-top font-semibold">Worksheet + Key (20)</td>
-                  <td className="p-3 align-top">
-                    <strong>20–18</strong>
-                    <ul className="list-disc pl-5 mt-1 space-y-1">
-                      <li>5–7 strong questions aligned to presentation</li>
-                      <li>Includes vocab + map/diagram + hazard scenario</li>
-                      <li>Answer key is complete and correct</li>
-                      <li>Clear formatting; easy for classmates</li>
-                    </ul>
-                  </td>
-                  <td className="p-3 align-top">
-                    <strong>17–14</strong>
-                    <ul className="list-disc pl-5 mt-1 space-y-1">
-                      <li>Meets question requirements</li>
-                      <li>Key mostly complete</li>
-                      <li>Minor clarity or alignment issues</li>
-                    </ul>
-                  </td>
-                  <td className="p-3 align-top">
-                    <strong>13–9</strong>
-                    <ul className="list-disc pl-5 mt-1 space-y-1">
-                      <li>Too short, too easy, or not aligned</li>
-                      <li>Missing a required question type</li>
-                      <li>Key incomplete</li>
-                    </ul>
-                  </td>
-                  <td className="p-3 align-top">
-                    <strong>8–0</strong>
-                    <ul className="list-disc pl-5 mt-1 space-y-1">
-                      <li>Worksheet missing or unusable</li>
-                      <li>No answer key</li>
-                    </ul>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-4">
-            <p className="font-semibold">Fast way to earn Exceeds</p>
-            <ul className="list-disc pl-6 mt-2 space-y-1">
-              <li>Explain <strong>why</strong> the volcano is there (plate setting → magma → eruption style).</li>
-              <li>Use one clear case study eruption with real impacts.</li>
-              <li>Connect regional culture to the environment (farming, tourism, religion, adaptation).</li>
-            </ul>
-          </div>
-        </Section>
-
-        <footer className="text-center text-slate-600 py-10">
-          <div className="text-sm">© Geology 11/12 • Volcano Research Project</div>
-        </footer>
-      </main>
+    <div class="bg-white border border-slate-200 rounded-lg p-4">
+      <label class="block text-xs font-bold text-slate-500 mb-1">Select your group size</label>
+      <select id="groupSelect"
+              class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm">
+        <option value="g2">Groups of 2</option>
+        <option value="g3">Groups of 3</option>
+      </select>
+      <p class="text-xs text-slate-500 mt-2">This updates requirements + rubric expectations.</p>
     </div>
-  );
-}
+
+    <div class="flex flex-col gap-2">
+      <a class="nav-link active" data-target="page-overview">Overview</a>
+      <a class="nav-link" data-target="page-requirements">Requirements</a>
+      <a class="nav-link" data-target="page-volcanoes">Volcano List (Top 15)</a>
+      <a class="nav-link" data-target="page-research">Guided Research</a>
+      <a class="nav-link" data-target="page-model">Model Requirements</a>
+      <a class="nav-link" data-target="page-presentation">Presentation</a>
+      <a class="nav-link" data-target="page-worksheet">Class Worksheet</a>
+      <a class="nav-link" data-target="page-rubric">Grading Rubric (100)</a>
+    </div>
+
+    <div class="mt-auto text-xs text-slate-500 leading-relaxed">
+      <p class="font-bold text-slate-600">Teacher note</p>
+      <p>Individual grades may be adjusted (teacher override) for contribution.</p>
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <main class="flex-1 h-full overflow-y-auto p-8 md:p-12">
+
+    <!-- OVERVIEW -->
+    <section id="page-overview" class="page-content prose max-w-none">
+      <h1 class="text-orange-600">🌋 Volcano Research Project</h1>
+      <p class="text-xl">
+        In groups of <strong>2–3</strong>, you will become the class experts on a real volcano.
+        You’ll research the science, build a model, teach the class, and create a worksheet.
+      </p>
+
+      <div class="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-500 not-prose my-6">
+        <h3 class="text-lg font-bold text-orange-800">Quick Links</h3>
+        <ul class="mt-2 space-y-1">
+          <li>👉 <strong>Start here:</strong> Read <span class="font-bold">Requirements</span>.</li>
+          <li>👉 <strong>Pick smart info:</strong> Use the <span class="font-bold">Guided Research</span> page.</li>
+          <li>👉 <strong>Max points:</strong> Check the <span class="font-bold">Rubric (100)</span>.</li>
+          <li>👉 <strong>Presentation win:</strong> Don’t read slides — teach.</li>
+        </ul>
+      </div>
+
+      <h2>Timeline</h2>
+      <ul class="list-disc pl-6">
+        <li><strong>3 work days:</strong> research + model + slides + worksheet</li>
+        <li><strong>2 presentation days:</strong> 5–7 minutes per group</li>
+      </ul>
+
+      <h2>Driving Question</h2>
+      <p><em>How does your volcano’s geology shape human life in its region/country?</em></p>
+
+      <div class="not-prose bg-white border border-slate-200 rounded-lg p-6 shadow-sm my-6">
+        <h3 class="text-lg font-bold text-slate-800">Individual accountability</h3>
+        <p class="text-slate-700 mt-2">
+          If a student does not contribute, the teacher may apply an individual grade reduction of up to <strong>50%</strong>.
+        </p>
+        <p class="text-xs text-slate-500 mt-2">Teacher override only (no peer voting).</p>
+      </div>
+    </section>
+
+    <!-- REQUIREMENTS -->
+    <section id="page-requirements" class="page-content hidden prose max-w-none">
+      <h1 class="text-orange-600">Requirements</h1>
+
+      <div class="not-prose grid grid-cols-1 lg:grid-cols-3 gap-4 my-6">
+        <div class="bg-white border border-slate-200 rounded-lg p-5 shadow-sm">
+          <h3 class="text-lg font-bold text-slate-800">Your Group Size (auto)</h3>
+          <p class="text-slate-600 text-sm mt-1">Based on the selector in the left sidebar.</p>
+          <div id="groupBadge" class="inline-flex mt-3 px-3 py-1 rounded-full bg-orange-100 text-orange-800 font-bold text-sm">
+            Groups of 2
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-lg p-5 shadow-sm lg:col-span-2">
+          <h3 class="text-lg font-bold text-slate-800">Minimum Requirements</h3>
+          <ul id="reqList" class="mt-3 space-y-2 text-slate-700"></ul>
+          <p class="text-xs text-slate-500 mt-4">
+            <strong>Accuracy beats decoration.</strong> Neat work, clear labels, and correct science matter most.
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-slate-50 border border-slate-200 rounded-lg p-6 not-prose">
+        <h3 class="text-lg font-bold text-slate-800">Citations expectation</h3>
+        <p class="mt-2 text-slate-700">
+          You must use <strong>at least 2 credible sources</strong> and list them on your last slide or on your worksheet.
+          (USGS, Smithsonian GVP, National Geographic, university pages, etc.)
+        </p>
+      </div>
+    </section>
+
+    <!-- VOLCANO LIST -->
+    <section id="page-volcanoes" class="page-content hidden prose max-w-none">
+      <h1 class="text-orange-600">Volcano List (Top 15)</h1>
+      <p>These are famous, high-impact volcanoes with strong research material. Your teacher will assign one to your group.</p>
+
+      <div class="not-prose grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+        <div class="bg-white border border-slate-200 rounded-lg p-5 shadow-sm">
+          <h3 class="font-bold text-slate-800">High-impact classics</h3>
+          <ul class="list-disc pl-5 mt-2 text-slate-700">
+            <li>Mount Vesuvius (Italy)</li>
+            <li>Mount St. Helens (USA)</li>
+            <li>Krakatoa (Indonesia)</li>
+            <li>Mount Tambora (Indonesia)</li>
+            <li>Mount Pinatubo (Philippines)</li>
+            <li>Nevado del Ruiz (Colombia)</li>
+            <li>Mount Merapi (Indonesia)</li>
+            <li>Santorini / Thera (Greece)</li>
+          </ul>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-lg p-5 shadow-sm">
+          <h3 class="font-bold text-slate-800">Active + influential systems</h3>
+          <ul class="list-disc pl-5 mt-2 text-slate-700">
+            <li>Mauna Loa (Hawaii, USA)</li>
+            <li>Kīlauea (Hawaii, USA)</li>
+            <li>Mount Etna (Italy)</li>
+            <li>Mount Fuji (Japan)</li>
+            <li>Mount Rainier (USA)</li>
+            <li>Eyjafjallajökull (Iceland)</li>
+            <li>Yellowstone Caldera (USA)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="not-prose bg-orange-50 border-l-4 border-orange-500 rounded-lg p-5">
+        <h3 class="font-bold text-orange-800">Teacher note (assignment method)</h3>
+        <p class="mt-2 text-slate-700">
+          Assign randomly, draft-style, or “top-3 preferences” to increase buy-in and reduce duplicates.
+        </p>
+      </div>
+    </section>
+
+    <!-- GUIDED RESEARCH -->
+    <section id="page-research" class="page-content hidden prose max-w-none">
+      <h1 class="text-orange-600">Guided Research</h1>
+
+      <div class="not-prose bg-white border border-slate-200 rounded-lg p-6 shadow-sm my-6">
+        <h3 class="text-lg font-bold text-slate-800">What you’re turning in</h3>
+        <p class="text-slate-700 mt-2">
+          The guided research packet replaces a traditional essay. Use short phrases and bullets.
+          Be ready to explain every answer.
+        </p>
+        <div class="mt-4 flex flex-wrap gap-3">
+          <!-- Replace these links with your actual Google Doc/PDF links -->
+          <a href="#" class="px-4 py-2 bg-orange-600 text-white font-semibold rounded-md shadow hover:bg-orange-700 inline-flex items-center gap-2">
+            <i data-lucide="file-text" class="w-4 h-4"></i> Open Guided Research (PDF)
+          </a>
+          <a href="#" class="px-4 py-2 bg-slate-600 text-white font-semibold rounded-md shadow hover:bg-slate-700 inline-flex items-center gap-2">
+            <i data-lucide="link" class="w-4 h-4"></i> Sources (USGS / GVP)
+          </a>
+        </div>
+
+        <p class="text-xs text-slate-500 mt-4">
+          Tip: Use Smithsonian Global Volcanism Program for eruption history and volcano type.
+        </p>
+      </div>
+
+      <h2>Minimum research expectations</h2>
+      <ul class="list-disc pl-6">
+        <li>Plate setting → magma type → eruption style (explain <strong>why</strong>)</li>
+        <li>One major eruption case study (what happened + hazards + impacts)</li>
+        <li>Hazards today + how scientists monitor the volcano</li>
+        <li>Culture section focuses on the <strong>region/country</strong> (food, religion/beliefs, economy, adaptation)</li>
+      </ul>
+    </section>
+
+    <!-- MODEL -->
+    <section id="page-model" class="page-content hidden prose max-w-none">
+      <h1 class="text-orange-600">Model Requirements</h1>
+
+      <div class="not-prose grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+        <div class="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
+          <h3 class="text-lg font-bold text-slate-800">Required labels</h3>
+          <ul class="mt-3 space-y-2 text-slate-700 list-disc pl-5">
+            <li>Magma chamber</li>
+            <li>Conduit (pipe)</li>
+            <li>Main vent</li>
+            <li>Crater (or caldera, if appropriate)</li>
+          </ul>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
+          <h3 class="text-lg font-bold text-slate-800">What makes it “Exceeds”</h3>
+          <ul class="mt-3 space-y-2 text-slate-700 list-disc pl-5">
+            <li>Model shape/type matches your assigned volcano</li>
+            <li>Includes layers/flows/hazards appropriate to the volcano</li>
+            <li>Neat, sturdy, and easy to interpret from 5 feet away</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="not-prose bg-emerald-50 border-l-4 border-emerald-500 rounded-lg p-5">
+        <h3 class="font-bold text-emerald-800">Eruption is optional</h3>
+        <p class="mt-2 text-slate-700">
+          If you do an eruption demo, it must be safe and quick. You will not earn points for mess.
+          You earn points for <strong>accurate structure and labeling</strong>.
+        </p>
+      </div>
+    </section>
+
+    <!-- PRESENTATION -->
+    <section id="page-presentation" class="page-content hidden prose max-w-none">
+      <h1 class="text-orange-600">Presentation</h1>
+
+      <h2>Time + participation</h2>
+      <ul class="list-disc pl-6">
+        <li><strong>5–7 minutes</strong> total</li>
+        <li>Every member must speak</li>
+        <li>Don’t read slides (use them as visuals)</li>
+      </ul>
+
+      <h2>Must include</h2>
+      <ul class="list-disc pl-6">
+        <li>Map (where it is)</li>
+        <li>Volcano type + magma type</li>
+        <li>Plate setting explanation</li>
+        <li>Hazards (at least 3) + one case study eruption</li>
+        <li>Culture/region connection</li>
+        <li>Sources listed (last slide)</li>
+      </ul>
+
+      <div class="not-prose bg-white border border-slate-200 rounded-lg p-6 shadow-sm my-6">
+        <h3 class="text-lg font-bold text-slate-800">Fast way to be memorable</h3>
+        <p class="text-slate-700 mt-2">
+          Teach one “cause → effect” chain clearly:
+          <span class="font-bold">plate setting → magma → viscosity/gas → eruption style → hazards → human impact</span>.
+        </p>
+      </div>
+    </section>
+
+    <!-- WORKSHEET -->
+    <section id="page-worksheet" class="page-content hidden prose max-w-none">
+      <h1 class="text-orange-600">Class Worksheet</h1>
+
+      <div class="not-prose bg-white border border-slate-200 rounded-lg p-6 shadow-sm my-6">
+        <h3 class="text-lg font-bold text-slate-800">Worksheet requirements</h3>
+        <ul class="mt-3 space-y-2 text-slate-700 list-disc pl-5">
+          <li><strong>5–7 questions</strong> (quality over quantity)</li>
+          <li>At least <strong>1 vocabulary</strong> question</li>
+          <li>At least <strong>1 diagram or map</strong> question</li>
+          <li>At least <strong>1 hazard scenario</strong> question (“What would you do if…?”)</li>
+          <li><strong>Answer key required</strong></li>
+        </ul>
+      </div>
+
+      <div class="not-prose bg-orange-50 border-l-4 border-orange-500 rounded-lg p-5">
+        <h3 class="font-bold text-orange-800">Approval rule</h3>
+        <p class="mt-2 text-slate-700">
+          Your worksheet must be approved by the teacher before presentation day.
+          Unapproved worksheets may be returned for revision.
+        </p>
+      </div>
+    </section>
+
+    <!-- RUBRIC -->
+    <section id="page-rubric" class="page-content hidden prose max-w-none">
+      <h1 class="text-orange-600">Grading Rubric (100 points)</h1>
+
+      <div class="not-prose mb-8">
+        <h2 class="text-2xl font-bold mb-4 text-slate-700">Optional Score Estimator</h2>
+        <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200">
+          <p class="mb-4 text-sm text-slate-600">Choose a performance level per category to estimate your score. (Teacher grade is final.)</p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-slate-700">A. Guided Research (30)</label>
+              <select class="rubricPick mt-1 block w-full rounded-md border-slate-300 shadow-sm" data-max="30">
+                <option value="30">Exceeds (30)</option>
+                <option value="25">Meets (25)</option>
+                <option value="18">Developing (18)</option>
+                <option value="8">Beginning (8)</option>
+                <option value="0">Missing (0)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-slate-700">B. Model (25)</label>
+              <select class="rubricPick mt-1 block w-full rounded-md border-slate-300 shadow-sm" data-max="25">
+                <option value="25">Exceeds (25)</option>
+                <option value="21">Meets (21)</option>
+                <option value="15">Developing (15)</option>
+                <option value="7">Beginning (7)</option>
+                <option value="0">Missing (0)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-slate-700">C. Presentation (25)</label>
+              <select class="rubricPick mt-1 block w-full rounded-md border-slate-300 shadow-sm" data-max="25">
+                <option value="25">Exceeds (25)</option>
+                <option value="21">Meets (21)</option>
+                <option value="15">Developing (15)</option>
+                <option value="7">Beginning (7)</option>
+                <option value="0">Missing (0)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-slate-700">D. Worksheet + Key (20)</label>
+              <select class="rubricPick mt-1 block w-full rounded-md border-slate-300 shadow-sm" data-max="20">
+                <option value="20">Exceeds (20)</option>
+                <option value="17">Meets (17)</option>
+                <option value="12">Developing (12)</option>
+                <option value="6">Beginning (6)</option>
+                <option value="0">Missing (0)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mt-5 flex items-center justify-between">
+            <div id="scoreOut" class="text-xl font-bold text-orange-700">Estimated Score: 100 / 100</div>
+            <button id="resetEstimator"
+                    class="px-4 py-2 bg-slate-500 text-white font-medium rounded-md shadow-sm hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2">
+              Reset
+            </button>
+          </div>
+
+          <p class="text-xs text-slate-500 mt-3">
+            Teacher may apply individual adjustment (up to -50%) based on contribution.
+          </p>
+        </div>
+      </div>
+
+      <h2>Detailed Rubric Table</h2>
+
+      <div class="overflow-x-auto not-prose">
+        <table class="min-w-full divide-y divide-slate-300 border border-slate-300 bg-white">
+          <thead class="bg-slate-100">
+            <tr>
+              <th class="px-4 py-3 text-left text-sm font-bold text-slate-700 border-r w-64">Category</th>
+              <th class="px-4 py-3 text-center text-sm font-bold text-slate-700 border-r w-24">Points</th>
+              <th class="px-4 py-3 text-left text-sm font-bold text-slate-700">Exceeds / Meets / Developing / Beginning</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200">
+
+            <!-- A -->
+            <tr>
+              <td class="px-4 py-3 font-medium border-r">A. Guided Research</td>
+              <td class="px-4 py-3 text-center font-bold border-r">30</td>
+              <td class="px-4 py-3 text-sm text-slate-700">
+                <div class="mb-2"><span class="font-bold text-slate-900">Exceeds (30):</span> All sections complete, accurate, and explained with “why” (plate setting → magma → eruption style). Culture focuses on the <strong>region/country</strong> and connects to environment/economy/adaptation.</div>
+                <div class="mb-2"><span class="font-bold text-slate-900">Meets (25):</span> Most sections complete and mostly accurate; correct volcano type + plate setting; hazards listed with basic explanation; culture included with basic regional details.</div>
+                <div class="mb-2"><span class="font-bold text-slate-900">Developing (18):</span> Several sections incomplete/vague OR includes scientific errors; hazards/monitoring generic; culture minimal or not regional.</div>
+                <div><span class="font-bold text-slate-900">Beginning (8):</span> Major missing sections, major inaccuracies, or copied info with little understanding.</div>
+              </td>
+            </tr>
+
+            <!-- B -->
+            <tr class="bg-orange-50">
+              <td class="px-4 py-3 font-medium border-r">B. Model</td>
+              <td class="px-4 py-3 text-center font-bold text-orange-700 border-r">25</td>
+              <td class="px-4 py-3 text-sm text-slate-700">
+                <div class="mb-2"><span class="font-bold">Exceeds (25):</span> Model matches assigned volcano type/shape; labeled clearly; includes correct layers/flows/hazards; neat and sturdy.</div>
+                <div class="mb-2"><span class="font-bold">Meets (21):</span> Correct overall type; most required labels; mostly accurate features; stable construction.</div>
+                <div class="mb-2"><span class="font-bold">Developing (15):</span> Missing several labels; generic volcano; messy or hard to interpret.</div>
+                <div><span class="font-bold">Beginning (7):</span> Missing model OR missing most required features/labels.</div>
+              </td>
+            </tr>
+
+            <!-- C -->
+            <tr>
+              <td class="px-4 py-3 font-medium border-r">C. Presentation</td>
+              <td class="px-4 py-3 text-center font-bold border-r">25</td>
+              <td class="px-4 py-3 text-sm text-slate-700">
+                <div class="mb-2"><span class="font-bold">Exceeds (25):</span> Teaches clearly without reading; strong visuals (map/diagram); all members speak; explains cause/effect; answers questions confidently; on time.</div>
+                <div class="mb-2"><span class="font-bold">Meets (21):</span> Mostly clear; required visuals present; most members speak; minor pacing/reading issues.</div>
+                <div class="mb-2"><span class="font-bold">Developing (15):</span> Frequent reading or unclear explanation; missing required element; uneven participation.</div>
+                <div><span class="font-bold">Beginning (7):</span> Off-topic, too short/long, missing major elements, or little preparation.</div>
+              </td>
+            </tr>
+
+            <!-- D -->
+            <tr class="bg-slate-50">
+              <td class="px-4 py-3 font-medium border-r">D. Worksheet + Key</td>
+              <td class="px-4 py-3 text-center font-bold border-r">20</td>
+              <td class="px-4 py-3 text-sm text-slate-700">
+                <div class="mb-2"><span class="font-bold">Exceeds (20):</span> 5–7 strong questions aligned to presentation; includes vocab + map/diagram + hazard scenario; answer key complete; formatted clearly for classmates.</div>
+                <div class="mb-2"><span class="font-bold">Meets (17):</span> Meets question requirements; key mostly complete; minor clarity/alignment issues.</div>
+                <div class="mb-2"><span class="font-bold">Developing (12):</span> Too short/too easy/not aligned; missing a required question type; key incomplete.</div>
+                <div><span class="font-bold">Beginning (6):</span> Worksheet missing/unusable OR no answer key.</div>
+              </td>
+            </tr>
+
+            <!-- Notes -->
+            <tr>
+              <td class="px-4 py-3 font-medium border-r text-slate-600">Important Notes</td>
+              <td class="px-4 py-3 text-center font-bold border-r text-slate-600">—</td>
+              <td class="px-4 py-3 text-sm text-slate-700">
+                <ul class="list-disc pl-5 space-y-1">
+                  <li><strong>Sources:</strong> minimum of 2 credible sources listed.</li>
+                  <li><strong>Individual adjustment:</strong> teacher may apply up to <strong>-50%</strong> for lack of contribution.</li>
+                  <li><strong>Time:</strong> presentations must fit the 5–7 minute window.</li>
+                </ul>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  lucide.createIcons();
+
+  // Sidebar navigation
+  const navLinks = document.querySelectorAll('.nav-link');
+  const pages = document.querySelectorAll('.page-content');
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('data-target');
+      pages.forEach(p => p.classList.add('hidden'));
+      document.getElementById(targetId).classList.remove('hidden');
+      navLinks.forEach(n => n.classList.remove('active'));
+      link.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // Group size requirements
+  const groupData = {
+    g2: {
+      name: "Groups of 2",
+      reqs: [
+        "<span class='font-bold'>Research:</span> All guided research sections completed accurately",
+        "<span class='font-bold'>Model:</span> Labeled structure (magma chamber, conduit, vent, crater/caldera)",
+        "<span class='font-bold'>Slides:</span> Map + type/magma + hazards + one eruption case study + regional culture",
+        "<span class='font-bold'>Worksheet:</span> 5–7 questions + answer key",
+        "<span class='font-bold'>Sources:</span> 2+ credible sources listed"
+      ]
+    },
+    g3: {
+      name: "Groups of 3",
+      reqs: [
+        "<span class='font-bold'>All Group-of-2 requirements</span>",
+        "<span class='font-bold'>Extra expectation:</span> Include a second hazard deep-dive (e.g., lahars OR pyroclastic flows OR ash impacts) with a real example",
+        "<span class='font-bold'>Extra expectation:</span> Add one additional visual to slides (diagram, cross-section, or hazard map)",
+        "<span class='font-bold'>All members speak:</span> clear role split in presentation"
+      ]
+    }
+  };
+
+  const groupSelect = document.getElementById('groupSelect');
+  const groupBadge = document.getElementById('groupBadge');
+  const reqList = document.getElementById('reqList');
+
+  function renderGroup() {
+    const key = groupSelect.value;
+    const g = groupData[key];
+    groupBadge.textContent = g.name;
+    reqList.innerHTML = g.reqs.map(r => `
+      <li class="flex gap-2">
+        <span class="text-orange-600 font-bold">•</span>
+        <span>${r}</span>
+      </li>`).join("");
+  }
+  groupSelect.addEventListener('change', renderGroup);
+  renderGroup();
+
+  // Rubric estimator
+  const picks = document.querySelectorAll('.rubricPick');
+  const scoreOut = document.getElementById('scoreOut');
+  const resetBtn = document.getElementById('resetEstimator');
+
+  function calcScore() {
+    let total = 0;
+    picks.forEach(p => total += Number(p.value));
+    scoreOut.textContent = `Estimated Score: ${total} / 100`;
+  }
+  picks.forEach(p => p.addEventListener('change', calcScore));
+  resetBtn.addEventListener('click', () => {
+    picks.forEach(p => p.selectedIndex = 0);
+    calcScore();
+  });
+  calcScore();
+});
+</script>
+
+</body>
+</html>
