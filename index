@@ -1,1 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Geology Hub</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    .card-hover{ transition: transform .2s ease, box-shadow .2s ease; }
+    .card-hover:hover{
+      transform: translateY(-4px);
+      box-shadow: 0 18px 30px rgba(15, 23, 42, 0.14);
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:.45rem;
+      padding:.35rem .6rem; border-radius:999px;
+      font-weight:700; font-size:.75rem;
+      border:1px solid rgba(148,163,184,.7);
+      background: rgba(255,255,255,.7);
+      backdrop-filter: blur(6px);
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+  <!-- Top bar -->
+  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-5 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-orange-600 flex items-center justify-center text-white font-black">
+          G
+        </div>
+        <div>
+          <div class="font-extrabold text-slate-900 leading-tight">Geology Hub</div>
+          <div class="text-xs text-slate-500 -mt-0.5">Projects • Resources • Units</div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 text-sm text-slate-600">
+        <span class="hidden sm:inline">Geology 11/12</span>
+        <span class="text-slate-300">•</span>
+        <span class="hidden sm:inline">Project Hubs</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img
+        src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1800&q=80"
+        alt="Geology landscape"
+        class="h-full w-full object-cover"
+      />
+      <div class="absolute inset-0 bg-black/55"></div>
+    </div>
+
+    <div class="relative max-w-6xl mx-auto px-5 py-16 md:py-20 text-white">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">
+          Welcome to Geology
+        </h1>
+        <p class="mt-4 text-lg md:text-xl text-white/90">
+          Use this page to access your current project hubs. Each hub includes instructions, requirements, and the rubric.
+        </p>
+
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="pill"><i data-lucide="clipboard-list" class="w-4 h-4"></i> Clear Requirements</span>
+          <span class="pill"><i data-lucide="check-circle" class="w-4 h-4"></i> Rubrics Included</span>
+          <span class="pill"><i data-lucide="users" class="w-4 h-4"></i> Group Work</span>
+          <span class="pill"><i data-lucide="graduation-cap" class="w-4 h-4"></i> Built for 11/12</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main -->
+  <main class="max-w-6xl mx-auto px-5 py-10 md:py-12">
+    <div class="flex items-end justify-between gap-4 flex-wrap">
+      <div>
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-900">Project Hubs</h2>
+        <p class="text-slate-600 mt-1">Click a project to open the full hub page.</p>
+      </div>
+
+      <div class="text-xs text-slate-500">
+        Tip: Bookmark this page → <span class="font-bold">/geology/index.html</span>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+      <!-- Soil Project -->
+      <a href="/geology/projects/soilproject.html" class="block bg-white border border-slate-200 rounded-2xl p-6 card-hover">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold text-slate-500">
+              <span class="px-2 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100">Project Hub</span>
+              <span class="px-2 py-1 rounded-full bg-slate-50 text-slate-700 border border-slate-200">Soils</span>
+            </div>
+            <h3 class="mt-3 text-xl font-extrabold text-slate-900">The Ground Beneath</h3>
+            <p class="mt-2 text-slate-600">
+              Global soil research project: geology, food, infrastructure, hazards, and culture connections.
+            </p>
+
+            <ul class="mt-4 space-y-2 text-sm text-slate-700">
+              <li class="flex items-center gap-2"><i data-lucide="map" class="w-4 h-4 text-emerald-700"></i> Region-based investigation</li>
+              <li class="flex items-center gap-2"><i data-lucide="sprout" class="w-4 h-4 text-emerald-700"></i> Agriculture + soil properties</li>
+              <li class="flex items-center gap-2"><i data-lucide="building-2" class="w-4 h-4 text-emerald-700"></i> Infrastructure constraints + hazards</li>
+            </ul>
+          </div>
+
+          <div class="shrink-0 hidden sm:flex items-center justify-center w-12 h-12 rounded-2xl bg-emerald-600 text-white">
+            <i data-lucide="layers" class="w-6 h-6"></i>
+          </div>
+        </div>
+
+        <div class="mt-6 inline-flex items-center gap-2 text-sm font-bold text-emerald-700">
+          Open Soil Project Hub <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </div>
+      </a>
+
+      <!-- Volcano Project -->
+      <a href="/geology/projects/volcano.html" class="block bg-white border border-slate-200 rounded-2xl p-6 card-hover">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold text-slate-500">
+              <span class="px-2 py-1 rounded-full bg-orange-50 text-orange-700 border border-orange-100">Project Hub</span>
+              <span class="px-2 py-1 rounded-full bg-slate-50 text-slate-700 border border-slate-200">Volcanism</span>
+            </div>
+            <h3 class="mt-3 text-xl font-extrabold text-slate-900">Volcano Research Project</h3>
+            <p class="mt-2 text-slate-600">
+              Research a real volcano, build a labeled model, teach the class, and create a worksheet + key.
+            </p>
+
+            <ul class="mt-4 space-y-2 text-sm text-slate-700">
+              <li class="flex items-center gap-2"><i data-lucide="flame" class="w-4 h-4 text-orange-700"></i> Volcano type + magma + plate setting</li>
+              <li class="flex items-center gap-2"><i data-lucide="alert-triangle" class="w-4 h-4 text-orange-700"></i> Hazards + monitoring + case study eruption</li>
+              <li class="flex items-center gap-2"><i data-lucide="users" class="w-4 h-4 text-orange-700"></i> Presentation + class worksheet</li>
+            </ul>
+          </div>
+
+          <div class="shrink-0 hidden sm:flex items-center justify-center w-12 h-12 rounded-2xl bg-orange-600 text-white">
+            <i data-lucide="volcano" class="w-6 h-6"></i>
+          </div>
+        </div>
+
+        <div class="mt-6 inline-flex items-center gap-2 text-sm font-bold text-orange-700">
+          Open Volcano Project Hub <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </div>
+      </a>
+    </div>
+
+    <!-- Optional: add more later -->
+    <div class="mt-10 bg-white border border-slate-200 rounded-2xl p-6">
+      <h3 class="text-lg font-bold text-slate-900">Coming Soon</h3>
+      <p class="text-slate-600 mt-1">
+        When you’re ready, we can add unit pages (Notes / Worksheets / Study guides), vocab lists, and lab hubs here.
+      </p>
+    </div>
+  </main>
+
+  <footer class="mt-10 border-t border-slate-200 bg-white">
+    <div class="max-w-6xl mx-auto px-5 py-8 text-sm text-slate-500 flex flex-wrap items-center justify-between gap-3">
+      <div>© Geology • Project Hub</div>
+      <div class="flex items-center gap-2">
+        <i data-lucide="link" class="w-4 h-4"></i>
+        <span>Paths: /geology/projects/soilproject.html • /geology/projects/volcano.html</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>
 
