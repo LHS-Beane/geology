@@ -1,354 +1,483 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project: The Ground Beneath</title>
-    <style>
-        :root {
-            --primary-color: #5D4037; /* Earthy Brown */
-            --secondary-color: #388E3C; /* Growth Green */
-            --accent-color: #FF7043; /* Clay Orange */
-            --bg-color: #f4f4f9;
-            --text-color: #333;
-            --light-bg: #ffffff;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Soil Project Hub | The Ground Beneath</title>
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-        }
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
 
-        /* Header Styling */
-        header {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 4rem 1rem;
-            text-align: center;
-        }
-
-        header h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        header p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* Navigation */
-        nav {
-            background-color: var(--primary-color);
-            display: flex;
-            justify-content: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        nav a {
-            color: white;
-            padding: 1rem 1.5rem;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-
-        nav a:hover {
-            background-color: var(--accent-color);
-        }
-
-        /* Container */
-        .container {
-            max-width: 1000px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-
-        /* Sections */
-        section {
-            background: var(--light-bg);
-            margin-bottom: 2rem;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        h2 {
-            color: var(--primary-color);
-            border-bottom: 3px solid var(--secondary-color);
-            padding-bottom: 0.5rem;
-            margin-top: 0;
-        }
-
-        h3 {
-            color: var(--secondary-color);
-            margin-top: 1.5rem;
-        }
-
-        /* Region Grid */
-        .region-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .region-card {
-            background: #fff;
-            border: 1px solid #ddd;
-            padding: 1.5rem;
-            border-radius: 8px;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .region-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-            border-color: var(--secondary-color);
-        }
-
-        .region-card h4 {
-            color: var(--accent-color);
-            margin: 0 0 10px 0;
-            font-size: 1.2rem;
-        }
-
-        /* Pillars of Research */
-        .pillars {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-
-        .pillar {
-            flex: 1;
-            min-width: 280px;
-            background-color: #fafafa;
-            padding: 1.5rem;
-            border-left: 5px solid var(--primary-color);
-        }
-
-        /* Rubric Table */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1rem;
-            font-size: 0.95rem;
-        }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
-
-        th {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background-color: #333;
-            color: white;
-            margin-top: 3rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-        
-        .btn:hover {
-            background-color: #2e7d32;
-        }
-
-    </style>
+  <style>
+    .nav-link{
+      display:block; padding:0.5rem 1rem; border-radius:0.375rem;
+      font-weight:500; color:#374151; transition:all .2s; cursor:pointer;
+    }
+    .nav-link:hover{ background-color:#f3f4f6; color:#111827; }
+    .nav-link.active{
+      background-color:#10b981; color:#fff;
+      box-shadow:0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -1px rgba(0,0,0,.06);
+    }
+    .page-content{ animation:fadeIn .35s ease-in-out; }
+    @keyframes fadeIn{
+      from{ opacity:0; transform:translateY(10px); }
+      to{ opacity:1; transform:translateY(0); }
+    }
+  </style>
 </head>
-<body>
 
-<header>
-    <h1>The Ground Beneath</h1>
-    <p>A Global Soil Research Project | Geology 11/12</p>
-</header>
+<body class="bg-slate-50 font-sans text-slate-800">
+<div class="flex h-screen bg-white">
 
-<nav>
-    <a href="#overview">Overview</a>
-    <a href="#regions">Select Region</a>
-    <a href="#research">Research Tasks</a>
-    <a href="#rubric">Grading Rubric</a>
-</nav>
+  <!-- Sidebar -->
+  <nav class="w-72 h-full bg-slate-100 p-5 shadow-lg flex flex-col gap-4 overflow-y-auto border-r border-slate-300">
 
-<div class="container">
+    <a href="/geology/index.html" class="mb-2 flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-emerald-600 transition">
+      <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Geology Index
+    </a>
 
-    <section id="overview">
-        <h2>The Mission: Geo-Consulting</h2>
-        <p><strong>Scenario:</strong> You are a geological consultant hired to analyze a specific region of the world. Your client needs to understand the fundamental nature of the ground before they can invest in agriculture or infrastructure projects there.</p>
-        <p><strong>The Question:</strong> <em>How does the specific geology of your region dictate the lifestyle, food, and safety of the people living there?</em></p>
-        <p><strong>Deliverable:</strong> You will produce a digital report (PDF or Slide Deck) covering the three pillars of investigation listed below.</p>
-    </section>
+    <h1 class="text-2xl font-bold text-emerald-700 border-b border-emerald-200 pb-2">Soil Project Hub</h1>
 
-    <section id="regions">
-        <h2>Phase 1: Choose Your Region</h2>
-        <p>Select <strong>one</strong> of the following regions. No two students in a breakout group may have the same region.</p>
-        
-        <div class="region-grid">
-            <div class="region-card">
-                <h4>Great Plains, USA</h4>
-                <p><strong>Soil Type:</strong> Mollisols</p>
-                <p>The "Breadbasket of the World." Rich, dark soils formed by grasslands.</p>
-            </div>
-            <div class="region-card">
-                <h4>Amazon Basin, Brazil</h4>
-                <p><strong>Soil Type:</strong> Oxisols</p>
-                <p>Ancient, highly weathered red soils. High iron, low nutrients.</p>
-            </div>
-            <div class="region-card">
-                <h4>Sicily, Italy</h4>
-                <p><strong>Soil Type:</strong> Andisols</p>
-                <p>Soils born from fire. Volcanic ash, highly porous and fertile.</p>
-            </div>
-            <div class="region-card">
-                <h4>The Sahel, Africa</h4>
-                <p><strong>Soil Type:</strong> Aridisols</p>
-                <p>Desert soils. Dry, salty, and facing the challenge of desertification.</p>
-            </div>
-            <div class="region-card">
-                <h4>Peatlands, Ireland</h4>
-                <p><strong>Soil Type:</strong> Histosols</p>
-                <p>Wet, organic soils made of decomposing plant matter. High carbon.</p>
-            </div>
-            <div class="region-card">
-                <h4>Loess Plateau, China</h4>
-                <p><strong>Soil Type:</strong> Entisols</p>
-                <p>Wind-blown silt deposits. Highly erodible but historically significant.</p>
-            </div>
-        </div>
-    </section>
+    <!-- Region selector -->
+    <div class="bg-white border border-slate-200 rounded-lg p-4">
+      <label class="block text-xs font-bold text-slate-500 mb-1">Select your region</label>
+      <select id="regionSelect"
+              class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+        <option value="greatplains">Great Plains, USA</option>
+        <option value="amazon">Amazon Basin, Brazil</option>
+        <option value="sicily">Sicily, Italy</option>
+        <option value="sahel">The Sahel, Africa</option>
+        <option value="ireland">Peatlands, Ireland</option>
+        <option value="loess">Loess Plateau, China</option>
+      </select>
+      <p class="text-xs text-slate-500 mt-2">This updates the prompts and suggested soil order.</p>
+    </div>
 
-    <section id="research">
-        <h2>Phase 2: The Three Pillars of Investigation</h2>
-        <p>Your report must address these three specific areas of study:</p>
+    <div class="flex flex-col gap-2">
+      <a class="nav-link active" data-target="page-overview">Overview</a>
+      <a class="nav-link" data-target="page-region">Region Snapshot</a>
+      <a class="nav-link" data-target="page-tasks">Research Tasks</a>
+      <a class="nav-link" data-target="page-resources">Resources</a>
+      <a class="nav-link" data-target="page-rubric">Grading Rubric (100)</a>
+    </div>
 
-        <div class="pillars">
-            <div class="pillar">
-                <h3>1. The Geology (The "What")</h3>
-                <p>Identify the scientific classification and composition.</p>
-                <ul>
-                    <li><strong>Taxonomy:</strong> What is the official Soil Order name?</li>
-                    <li><strong>CLORPT:</strong> Which factor (Climate, Organisms, Relief, Parent Material, Time) was the most dominant in creating this soil?</li>
-                    <li><strong>Profile:</strong> Describe the horizons. What color is it and why? (e.g., Red = Iron).</li>
-                </ul>
-            </div>
+    <div class="mt-auto text-xs text-slate-500 leading-relaxed">
+      <p class="font-bold text-slate-600">Teacher note</p>
+      <p>Individual grades may be adjusted (teacher override) for contribution.</p>
+    </div>
+  </nav>
 
-            <div class="pillar">
-                <h3>2. The Harvest (The "Food")</h3>
-                <p>Analyze the agricultural economy.</p>
-                <ul>
-                    <li><strong>Native Crops:</strong> What grows best here naturally?</li>
-                    <li><strong>Deficiencies:</strong> What nutrients is the soil missing? Do farmers need specific fertilizers?</li>
-                    <li><strong>The Meal:</strong> Propose a "Dinner Plate" containing only foods that can be grown in this specific soil.</li>
-                </ul>
-            </div>
+  <!-- Main -->
+  <main class="flex-1 h-full overflow-y-auto p-8 md:p-12">
 
-            <div class="pillar">
-                <h3>3. The Infrastructure (The "Build")</h3>
-                <p>Evaluate engineering constraints.</p>
-                <ul>
-                    <li><strong>Stability:</strong> Is the soil prone to "Shrink-Swell" (cracking foundations) or Liquefaction (earthquakes)?</li>
-                    <li><strong>Materials:</strong> How have traditional cultures used this soil to build? (e.g., Adobe, brick, stilts).</li>
-                    <li><strong>Hazards:</strong> Are there sinkholes, landslides, or erosion risks?</li>
-                </ul>
-            </div>
-        </div>
-    </section>
+    <!-- OVERVIEW -->
+    <section id="page-overview" class="page-content prose max-w-none">
+      <h1 class="text-emerald-600">🌍 The Ground Beneath</h1>
+      <p class="text-xl">
+        You are a <strong>geo-consulting team</strong> hired to analyze the ground in a specific region.
+        Your client needs to understand the soil before investing in <strong>food production</strong> or <strong>infrastructure</strong>.
+      </p>
 
-    <section id="resources">
-        <h2>Resources</h2>
-        <p>Use these tools to gather your data:</p>
-        <ul>
-            <li><a href="https://websoilsurvey.sc.egov.usda.gov/" target="_blank">USDA Web Soil Survey</a> (For US Regions)</li>
-            <li><a href="https://www.isric.org/explore/soilgeographic-databases" target="_blank">ISRIC - World Soil Information</a> (Global Data)</li>
-            <li><a href="https://casoilresource.lawr.ucdavis.edu/gmap/" target="_blank">SoilWeb Earth</a></li>
+      <div class="bg-emerald-50 p-6 rounded-lg border-l-4 border-emerald-500 not-prose my-6">
+        <h3 class="text-lg font-bold text-emerald-800">Driving Question</h3>
+        <p class="mt-2 text-slate-700">
+          <em>How does the geology of your region shape food, lifestyle, and safety for the people who live there?</em>
+        </p>
+        <ul class="mt-3 space-y-1 text-slate-700">
+          <li>👉 Start by checking your <strong>Region Snapshot</strong>.</li>
+          <li>👉 Then complete the <strong>Research Tasks</strong>.</li>
+          <li>👉 Finish by building a clean, visual report (Slides or PDF).</li>
         </ul>
+      </div>
+
+      <h2>What you turn in</h2>
+      <ul class="list-disc pl-6">
+        <li>A digital report (Slides or PDF)</li>
+        <li>Includes maps/visuals and a sources slide</li>
+        <li>Uses evidence: soil order, climate, crops, hazards, building constraints</li>
+      </ul>
+
+      <div class="not-prose bg-white border border-slate-200 rounded-lg p-6 shadow-sm my-6">
+        <h3 class="text-lg font-bold text-slate-800">Citations expectation</h3>
+        <p class="text-slate-700 mt-2">
+          Use <strong>at least 2 credible sources</strong> and list them at the end.
+          Avoid random blogs. Use data sources when possible.
+        </p>
+      </div>
     </section>
 
-    <section id="rubric">
-        <h2>Phase 3: Grading Rubric</h2>
-        <p>Total Points: 100</p>
-        
-        <table>
-            <thead>
-                <tr>
-                    <th style="width: 20%;">Criteria</th>
-                    <th style="width: 20%;">Excellent (25 pts)</th>
-                    <th style="width: 20%;">Proficient (20 pts)</th>
-                    <th style="width: 20%;">Developing (15 pts)</th>
-                    <th style="width: 20%;">Incomplete (10 pts)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Geological Accuracy</strong></td>
-                    <td>Correctly identifies Taxonomy, Formation Factors, and Horizon details with scientific depth.</td>
-                    <td>Identifies Taxonomy and Factors but lacks detail on Horizons or specific composition.</td>
-                    <td>General description of soil provided, but lacks scientific terminology or Taxonomy.</td>
-                    <td>Incorrect soil identification or missing major geological concepts.</td>
-                </tr>
-                <tr>
-                    <td><strong>Agricultural Analysis</strong></td>
-                    <td>Connects soil chemistry directly to crop success/failure. Creative "Dinner Plate" example.</td>
-                    <td>Lists crops grown in the region but lacks explanation of <em>why</em> the soil supports them.</td>
-                    <td>Lists crops that do not actually grow in that region or misses the soil connection.</td>
-                    <td>Section missing or lists generic foods only.</td>
-                </tr>
-                <tr>
-                    <td><strong>Engineering & Infrastructure</strong></td>
-                    <td>Detailed analysis of hazards (liquefaction, erosion) and historical building methods.</td>
-                    <td>Mentions building materials but misses the geological hazard aspect.</td>
-                    <td>Vague reference to buildings (e.g., "houses are made of wood") without soil context.</td>
-                    <td>Section missing.</td>
-                </tr>
-                <tr>
-                    <td><strong>Visuals & Professionalism</strong></td>
-                    <td>Report is visually stunning, uses maps, diagrams, and is cited correctly.</td>
-                    <td>Report is clean and organized, includes some images. Minor citation errors.</td>
-                    <td>Report is text-heavy, disorganized, or lacks necessary maps/images.</td>
-                    <td>Formatting makes the report difficult to read. No citations.</td>
-                </tr>
-            </tbody>
+    <!-- REGION SNAPSHOT -->
+    <section id="page-region" class="page-content hidden prose max-w-none">
+      <h1 class="text-emerald-600">Region Snapshot</h1>
+
+      <div class="not-prose grid grid-cols-1 lg:grid-cols-3 gap-4 my-6">
+        <div class="bg-white border border-slate-200 rounded-lg p-5 shadow-sm">
+          <h3 class="text-lg font-bold text-slate-800">Selected Region</h3>
+          <p class="text-slate-600 text-sm mt-1">Based on the selector on the left.</p>
+          <div id="regionBadge" class="inline-flex mt-3 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 font-bold text-sm">
+            Great Plains, USA
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-lg p-5 shadow-sm lg:col-span-2">
+          <h3 class="text-lg font-bold text-slate-800">Quick Profile</h3>
+          <div id="regionProfile" class="mt-3 text-slate-700 space-y-2"></div>
+          <p class="text-xs text-slate-500 mt-4">
+            Note: Soil orders listed here are <strong>starting points</strong> — your job is to confirm with research.
+          </p>
+        </div>
+      </div>
+
+      <div class="not-prose bg-slate-50 border border-slate-200 rounded-lg p-6">
+        <h3 class="text-lg font-bold text-slate-800">What you should find (minimum)</h3>
+        <ul id="regionPrompts" class="mt-3 space-y-2 text-slate-700"></ul>
+      </div>
+    </section>
+
+    <!-- TASKS -->
+    <section id="page-tasks" class="page-content hidden prose max-w-none">
+      <h1 class="text-emerald-600">Research Tasks</h1>
+
+      <div class="not-prose grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
+        <div class="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
+          <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+            <i data-lucide="layers" class="w-5 h-5 text-emerald-700"></i> 1) Geology (What)
+          </h3>
+          <ul class="mt-3 space-y-2 text-slate-700 list-disc pl-5">
+            <li>Confirm the soil order and describe composition</li>
+            <li>CLORPT: identify the dominant formation factor</li>
+            <li>Describe the soil profile/horizons and color causes</li>
+          </ul>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
+          <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+            <i data-lucide="sprout" class="w-5 h-5 text-emerald-700"></i> 2) Harvest (Food)
+          </h3>
+          <ul class="mt-3 space-y-2 text-slate-700 list-disc pl-5">
+            <li>What grows well and why?</li>
+            <li>Soil deficiencies (nutrients, drainage, pH, etc.)</li>
+            <li>Create a “regional dinner plate” from realistic foods</li>
+          </ul>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
+          <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+            <i data-lucide="building-2" class="w-5 h-5 text-emerald-700"></i> 3) Infrastructure (Build)
+          </h3>
+          <ul class="mt-3 space-y-2 text-slate-700 list-disc pl-5">
+            <li>Stability risks (shrink-swell, erosion, liquefaction, etc.)</li>
+            <li>How people build (materials + traditional methods)</li>
+            <li>Hazards: landslides, sinkholes, desertification, etc.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="not-prose bg-emerald-50 border-l-4 border-emerald-500 rounded-lg p-5">
+        <h3 class="font-bold text-emerald-800">Report requirement</h3>
+        <p class="mt-2 text-slate-700">
+          Your report must include a <strong>map</strong>, at least <strong>3 visuals</strong> (photos/diagrams),
+          and a <strong>sources slide</strong>.
+        </p>
+      </div>
+    </section>
+
+    <!-- RESOURCES -->
+    <section id="page-resources" class="page-content hidden prose max-w-none">
+      <h1 class="text-emerald-600">Resources</h1>
+
+      <div class="not-prose bg-white border border-slate-200 rounded-lg p-6 shadow-sm my-6">
+        <h3 class="text-lg font-bold text-slate-800">Recommended sources</h3>
+        <ul class="mt-3 space-y-2 text-slate-700 list-disc pl-5">
+          <li>
+            <a class="text-emerald-700 font-bold hover:underline" href="https://websoilsurvey.sc.egov.usda.gov/" target="_blank">
+              USDA Web Soil Survey
+            </a>
+            <span class="text-slate-500 text-sm">(great for US regions)</span>
+          </li>
+          <li>
+            <a class="text-emerald-700 font-bold hover:underline" href="https://www.isric.org/explore/soil-geographic-databases" target="_blank">
+              ISRIC World Soil Information
+            </a>
+            <span class="text-slate-500 text-sm">(global soil data)</span>
+          </li>
+          <li>
+            <a class="text-emerald-700 font-bold hover:underline" href="https://casoilresource.lawr.ucdavis.edu/gmap/" target="_blank">
+              SoilWeb Earth (UC Davis)
+            </a>
+            <span class="text-slate-500 text-sm">(maps + profiles)</span>
+          </li>
+        </ul>
+
+        <p class="text-xs text-slate-500 mt-4">
+          If you use Wikipedia to start, you must verify with a stronger source.
+        </p>
+      </div>
+    </section>
+
+    <!-- RUBRIC -->
+    <section id="page-rubric" class="page-content hidden prose max-w-none">
+      <h1 class="text-emerald-600">Grading Rubric (100 points)</h1>
+
+      <div class="not-prose mb-8">
+        <h2 class="text-2xl font-bold mb-4 text-slate-700">Optional Score Estimator</h2>
+        <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200">
+          <p class="mb-4 text-sm text-slate-600">Choose a performance level per category to estimate your score. (Teacher grade is final.)</p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-slate-700">A. Geology Accuracy (25)</label>
+              <select class="rubricPick mt-1 block w-full rounded-md border-slate-300 shadow-sm">
+                <option value="25">Exceeds (25)</option>
+                <option value="20">Meets (20)</option>
+                <option value="15">Developing (15)</option>
+                <option value="10">Beginning (10)</option>
+                <option value="0">Missing (0)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-slate-700">B. Agricultural Analysis (25)</label>
+              <select class="rubricPick mt-1 block w-full rounded-md border-slate-300 shadow-sm">
+                <option value="25">Exceeds (25)</option>
+                <option value="20">Meets (20)</option>
+                <option value="15">Developing (15)</option>
+                <option value="10">Beginning (10)</option>
+                <option value="0">Missing (0)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-slate-700">C. Infrastructure + Hazards (25)</label>
+              <select class="rubricPick mt-1 block w-full rounded-md border-slate-300 shadow-sm">
+                <option value="25">Exceeds (25)</option>
+                <option value="20">Meets (20)</option>
+                <option value="15">Developing (15)</option>
+                <option value="10">Beginning (10)</option>
+                <option value="0">Missing (0)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-slate-700">D. Visuals + Professionalism (25)</label>
+              <select class="rubricPick mt-1 block w-full rounded-md border-slate-300 shadow-sm">
+                <option value="25">Exceeds (25)</option>
+                <option value="20">Meets (20)</option>
+                <option value="15">Developing (15)</option>
+                <option value="10">Beginning (10)</option>
+                <option value="0">Missing (0)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mt-5 flex items-center justify-between">
+            <div id="scoreOut" class="text-xl font-bold text-emerald-700">Estimated Score: 100 / 100</div>
+            <button id="resetEstimator"
+                    class="px-4 py-2 bg-slate-500 text-white font-medium rounded-md shadow-sm hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2">
+              Reset
+            </button>
+          </div>
+
+          <p class="text-xs text-slate-500 mt-3">
+            Teacher may apply individual adjustment based on contribution.
+          </p>
+        </div>
+      </div>
+
+      <h2>Rubric details</h2>
+      <div class="overflow-x-auto not-prose">
+        <table class="min-w-full divide-y divide-slate-300 border border-slate-300 bg-white">
+          <thead class="bg-slate-100">
+            <tr>
+              <th class="px-4 py-3 text-left text-sm font-bold text-slate-700 border-r w-64">Category</th>
+              <th class="px-4 py-3 text-center text-sm font-bold text-slate-700 border-r w-24">Points</th>
+              <th class="px-4 py-3 text-left text-sm font-bold text-slate-700">Exceeds / Meets / Developing / Beginning</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200">
+            <tr>
+              <td class="px-4 py-3 font-medium border-r">A. Geology Accuracy</td>
+              <td class="px-4 py-3 text-center font-bold border-r">25</td>
+              <td class="px-4 py-3 text-sm text-slate-700">
+                <div class="mb-2"><span class="font-bold">Exceeds (25):</span> Correct soil order + strong CLORPT explanation + horizon/profile detail with evidence.</div>
+                <div class="mb-2"><span class="font-bold">Meets (20):</span> Correct soil order + basic CLORPT + some profile detail.</div>
+                <div class="mb-2"><span class="font-bold">Developing (15):</span> Partial accuracy, vague explanation, or missing key terms.</div>
+                <div><span class="font-bold">Beginning (10):</span> Major inaccuracies or missing major concepts.</div>
+              </td>
+            </tr>
+
+            <tr class="bg-emerald-50">
+              <td class="px-4 py-3 font-medium border-r">B. Agricultural Analysis</td>
+              <td class="px-4 py-3 text-center font-bold text-emerald-700 border-r">25</td>
+              <td class="px-4 py-3 text-sm text-slate-700">
+                <div class="mb-2"><span class="font-bold">Exceeds (25):</span> Connects soil properties to crops with clear “why,” includes realistic dinner plate.</div>
+                <div class="mb-2"><span class="font-bold">Meets (20):</span> Lists crops and gives basic reasons; dinner plate mostly realistic.</div>
+                <div class="mb-2"><span class="font-bold">Developing (15):</span> Generic crops or weak connection to soil; dinner plate unrealistic.</div>
+                <div><span class="font-bold">Beginning (10):</span> Missing or incorrect crop/soil relationship.</div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="px-4 py-3 font-medium border-r">C. Infrastructure + Hazards</td>
+              <td class="px-4 py-3 text-center font-bold border-r">25</td>
+              <td class="px-4 py-3 text-sm text-slate-700">
+                <div class="mb-2"><span class="font-bold">Exceeds (25):</span> Strong hazard analysis + real building methods linked to soil constraints.</div>
+                <div class="mb-2"><span class="font-bold">Meets (20):</span> Mentions hazards + materials with some links to soil.</div>
+                <div class="mb-2"><span class="font-bold">Developing (15):</span> Vague hazards/materials; little soil connection.</div>
+                <div><span class="font-bold">Beginning (10):</span> Missing or incorrect hazard/build info.</div>
+              </td>
+            </tr>
+
+            <tr class="bg-slate-50">
+              <td class="px-4 py-3 font-medium border-r">D. Visuals + Professionalism</td>
+              <td class="px-4 py-3 text-center font-bold border-r">25</td>
+              <td class="px-4 py-3 text-sm text-slate-700">
+                <div class="mb-2"><span class="font-bold">Exceeds (25):</span> Clean design, strong visuals/maps, accurate captions, sources correct.</div>
+                <div class="mb-2"><span class="font-bold">Meets (20):</span> Organized report with visuals and mostly correct citations.</div>
+                <div class="mb-2"><span class="font-bold">Developing (15):</span> Disorganized or text-heavy, weak visuals or missing citations.</div>
+                <div><span class="font-bold">Beginning (10):</span> Hard to read, no visuals, no sources.</div>
+              </td>
+            </tr>
+          </tbody>
         </table>
+      </div>
     </section>
 
+  </main>
 </div>
 
-<footer>
-    <p>&copy; 2024 Geology Dept. | Winter Virtual Lab Series</p>
-</footer>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  lucide.createIcons();
+
+  // Navigation
+  const navLinks = document.querySelectorAll('.nav-link');
+  const pages = document.querySelectorAll('.page-content');
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('data-target');
+      pages.forEach(p => p.classList.add('hidden'));
+      document.getElementById(targetId).classList.remove('hidden');
+      navLinks.forEach(n => n.classList.remove('active'));
+      link.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // Region interactivity
+  const regionData = {
+    greatplains: {
+      name: "Great Plains, USA",
+      soil: "Likely Soil Order: Mollisols (confirm)",
+      blurb: "Grassland soils often rich in organic matter; historically productive farmland.",
+      prompts: [
+        "What is the confirmed soil order and what evidence supports it?",
+        "Which CLORPT factor dominates here (climate? organisms? parent material?) and why?",
+        "Which crops dominate and how do soil properties support them?",
+        "What are the biggest hazards (erosion, drought, dust storms, shrink-swell clays, etc.)?"
+      ]
+    },
+    amazon: {
+      name: "Amazon Basin, Brazil",
+      soil: "Likely Soil Order: Oxisols (confirm)",
+      blurb: "Highly weathered tropical soils; nutrients often stored in biomass rather than soil.",
+      prompts: [
+        "How does intense rainfall influence nutrient leaching and soil fertility?",
+        "How do people farm here (slash-and-burn, agroforestry, fertilizers, etc.)?",
+        "What is the main limiting factor for crops (nutrients, acidity, drainage)?",
+        "What hazards exist (erosion after clearing, flooding, landslides in some areas)?"
+      ]
+    },
+    sicily: {
+      name: "Sicily, Italy",
+      soil: "Likely Soil Order: Andisols (confirm)",
+      blurb: "Volcanic-influenced soils can be highly porous and fertile (depending on ash/age).",
+      prompts: [
+        "What volcanic processes contributed to soil formation here?",
+        "How does volcanic soil affect water retention and fertility?",
+        "What crops are common and why?",
+        "What geologic hazards affect infrastructure (volcanism, earthquakes, ash fall)?"
+      ]
+    },
+    sahel: {
+      name: "The Sahel, Africa",
+      soil: "Likely Soil Order: Aridisols (confirm)",
+      blurb: "Semi-arid transition zone; soils often dry with limited organic matter and water stress.",
+      prompts: [
+        "How does limited rainfall shape soil development and vegetation?",
+        "How do farmers adapt (irrigation, drought crops, grazing)?",
+        "What hazards exist (desertification, erosion, dust storms)?",
+        "What building strategies work best in dry soils?"
+      ]
+    },
+    ireland: {
+      name: "Peatlands, Ireland",
+      soil: "Likely Soil Order: Histosols (confirm)",
+      blurb: "Organic-rich wet soils formed from partially decomposed plant matter.",
+      prompts: [
+        "Why does waterlogging slow decomposition and create peat?",
+        "How does peat affect building foundations and drainage?",
+        "How do people use peat historically (fuel, land use impacts)?",
+        "What hazards exist (subsidence, fire risk during drought, carbon release)?"
+      ]
+    },
+    loess: {
+      name: "Loess Plateau, China",
+      soil: "Likely Soil Order: Entisols (confirm)",
+      blurb: "Wind-blown silt deposits; fertile but highly erodible without vegetation cover.",
+      prompts: [
+        "How does loess form and why is it so erodible?",
+        "How do humans reduce erosion (terracing, re-vegetation)?",
+        "What are the risks to infrastructure (landslides, collapse, erosion gullies)?",
+        "What crops and land uses are common and why?"
+      ]
+    }
+  };
+
+  const regionSelect = document.getElementById('regionSelect');
+  const regionBadge = document.getElementById('regionBadge');
+  const regionProfile = document.getElementById('regionProfile');
+  const regionPrompts = document.getElementById('regionPrompts');
+
+  function renderRegion(){
+    const key = regionSelect.value;
+    const r = regionData[key];
+
+    regionBadge.textContent = r.name;
+    regionProfile.innerHTML = `
+      <div class="text-slate-800 font-bold">${r.soil}</div>
+      <div class="text-slate-700">${r.blurb}</div>
+    `;
+    regionPrompts.innerHTML = r.prompts.map(p => `
+      <li class="flex gap-2">
+        <span class="text-emerald-600 font-bold">•</span>
+        <span>${p}</span>
+      </li>
+    `).join("");
+  }
+  regionSelect.addEventListener('change', renderRegion);
+  renderRegion();
+
+  // Rubric estimator
+  const picks = document.querySelectorAll('.rubricPick');
+  const scoreOut = document.getElementById('scoreOut');
+  const resetBtn = document.getElementById('resetEstimator');
+
+  function calcScore(){
+    let total = 0;
+    picks.forEach(p => total += Number(p.value));
+    scoreOut.textContent = `Estimated Score: ${total} / 100`;
+  }
+  picks.forEach(p => p.addEventListener('change', calcScore));
+  resetBtn.addEventListener('click', () => {
+    picks.forEach(p => p.selectedIndex = 0);
+    calcScore();
+  });
+  calcScore();
+});
+</script>
 
 </body>
 </html>
