@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Geologic Timeline Project</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #5b6472;
+      --accent: #2563eb;
+      --accent-2: #0f766e;
+      --line: #d7dee8;
+      --gold: #f59e0b;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 180px, var(--bg) 100%);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    .hero {
+      padding: 56px 20px 36px;
+      background: linear-gradient(135deg, #1d4ed8, #0f766e);
+      color: white;
+    }
+
+    .hero-inner,
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.22);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      letter-spacing: 0.03em;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      line-height: 1.08;
+    }
+
+    .subtitle {
+      max-width: 820px;
+      font-size: 1.08rem;
+      color: rgba(255,255,255,0.92);
+      margin-bottom: 22px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .hero-stat {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 16px;
+      padding: 14px 16px;
+      backdrop-filter: blur(6px);
+    }
+
+    .hero-stat strong {
+      display: block;
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+    }
+
+    .topnav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topnav .container {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 8px 12px;
+      border-radius: 10px;
+    }
+
+    .nav-links a:hover {
+      background: #e9eef8;
+    }
+
+    main.container {
+      padding: 28px 20px 60px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 22px;
+      margin-bottom: 22px;
+    }
+
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      margin-bottom: 22px;
+    }
+
+    h2 {
+      font-size: 1.55rem;
+      margin: 0 0 12px;
+      color: #0f172a;
+    }
+
+    h3 {
+      font-size: 1.08rem;
+      margin: 18px 0 8px;
+      color: #0f172a;
+    }
+
+    p { margin: 0 0 12px; }
+
+    ul, ol {
+      margin: 10px 0 10px 22px;
+      padding: 0;
+    }
+
+    li { margin: 8px 0; }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .pill {
+      background: #eef4ff;
+      color: #1e40af;
+      border: 1px solid #c7d7ff;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    .callout {
+      border-left: 5px solid var(--gold);
+      background: #fff9eb;
+      padding: 14px 16px;
+      border-radius: 12px;
+      margin: 14px 0;
+    }
+
+    .callout strong { color: #92400e; }
+
+    .scale-box {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .mini {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      background: #f8fbff;
+    }
+
+    .mini strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #0f172a;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      overflow: hidden;
+      border-radius: 14px;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 12px 10px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 0.96rem;
+    }
+
+    th {
+      background: #eaf1ff;
+      color: #0f172a;
+    }
+
+    tr:nth-child(even) td {
+      background: #fbfdff;
+    }
+
+    .timeline-strip {
+      margin-top: 14px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .timeline-strip div {
+      padding: 14px 8px;
+      color: white;
+    }
+
+    .timeline-strip div:nth-child(1) { background: #1d4ed8; }
+    .timeline-strip div:nth-child(2) { background: #2563eb; }
+    .timeline-strip div:nth-child(3) { background: #0f766e; }
+    .timeline-strip div:nth-child(4) { background: #059669; }
+    .timeline-strip div:nth-child(5) { background: #d97706; }
+    .timeline-strip div:nth-child(6) { background: #b91c1c; }
+
+    .rubric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .rubric-card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      background: #fcfdff;
+    }
+
+    .rubric-card .score {
+      display: inline-block;
+      margin-top: 10px;
+      font-weight: 800;
+      color: var(--accent-2);
+      background: #e8fbf5;
+      border: 1px solid #bceedd;
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+
+    .steps {
+      counter-reset: step;
+      list-style: none;
+      margin-left: 0;
+    }
+
+    .steps li {
+      counter-increment: step;
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 12px;
+      align-items: start;
+      margin: 14px 0;
+    }
+
+    .steps li::before {
+      content: counter(step);
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #dbeafe;
+      color: #1d4ed8;
+      font-weight: 800;
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+      padding: 20px;
+    }
+
+    .print-note {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    @media print {
+      .topnav { display: none; }
+      body { background: white; }
+      .hero { padding: 22px 20px; }
+      .card { box-shadow: none; break-inside: avoid; }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">Earth Science Project</div>
+      <h1>Geologic Timeline Project</h1>
+      <p class="subtitle">Create a 10-foot, to-scale timeline of Earth’s 4.6 billion year history, then build a separate zoom-in of the last 20,000 years of human history. Your goal is to show just how tiny human history is compared to geologic time.</p>
+      <div class="hero-grid">
+        <div class="hero-stat"><strong>Format</strong><span>Pairs · physical timeline</span></div>
+        <div class="hero-stat"><strong>Main Timeline</strong><span>10 feet long</span></div>
+        <div class="hero-stat"><strong>Project Length</strong><span>3 class days</span></div>
+        <div class="hero-stat"><strong>Focus</strong><span>Accuracy · visuals · scale</span></div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="topnav">
+    <div class="container">
+      <strong>Project Guide</strong>
+      <div class="nav-links">
+        <a href="#overview">Overview</a>
+        <a href="#materials">Materials</a>
+        <a href="#part1">Geologic Timeline</a>
+        <a href="#part2">Human Zoom</a>
+        <a href="#steps">Directions</a>
+        <a href="#rubric">Rubric</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div class="grid">
+      <section class="card" id="overview">
+        <h2>Project Overview</h2>
+        <p>You and your partner will create two connected timeline products:</p>
+        <ol>
+          <li><strong>A 10-foot geologic timeline</strong> showing major events in Earth’s history to scale.</li>
+          <li><strong>A human history zoom-in</strong> showing the last 20,000 years with major world, science, technology, and cultural events.</li>
+        </ol>
+        <div class="callout"><strong>Big Idea:</strong> The point of this project is not just to place dates. It is to help you understand scale. Most of Earth’s history happened long before humans appeared.</div>
+        <div class="pill-row">
+          <span class="pill">Work in pairs</span>
+          <span class="pill">Balanced: conceptual + scale</span>
+          <span class="pill">Neat and readable</span>
+          <span class="pill">Include visuals</span>
+        </div>
+      </section>
+
+      <aside class="card" id="materials">
+        <h2>Materials</h2>
+        <ul>
+          <li>10-foot paper strip or butcher paper section</li>
+          <li>Ruler or tape measure</li>
+          <li>Pencils and erasers</li>
+          <li>Markers or colored pencils</li>
+          <li>Reference sheet / class notes</li>
+          <li>Separate paper section for human history zoom</li>
+        </ul>
+        <p class="print-note">Tip: Lightly pencil all measurements first. Add color and visuals only after your event placement is checked.</p>
+      </aside>
+    </div>
+
+    <section class="card" id="part1">
+      <h2>Part 1: 10-Foot Geologic Timeline</h2>
+      <p>Your main timeline will represent <strong>4.6 billion years</strong> of Earth’s history across <strong>120 inches</strong>.</p>
+      <div class="scale-box">
+        <div class="mini"><strong>Total Length</strong>120 inches (10 feet)</div>
+        <div class="mini"><strong>Total Time</strong>4.6 billion years</div>
+        <div class="mini"><strong>Scale</strong>1 inch = about 38 million years</div>
+      </div>
+
+      <h3>Required Geologic Events</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Approximate Time Ago</th>
+            <th>Distance from Present (about)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Earth forms</td><td>4.6 billion years ago</td><td>120 in</td></tr>
+          <tr><td>First crust forms</td><td>4.4 billion years ago</td><td>116 in</td></tr>
+          <tr><td>First life (simple cells)</td><td>3.5 billion years ago</td><td>92 in</td></tr>
+          <tr><td>Oxygen begins to build up</td><td>2.5 billion years ago</td><td>66 in</td></tr>
+          <tr><td>First complex cells</td><td>2.0 billion years ago</td><td>53 in</td></tr>
+          <tr><td>First multicellular life</td><td>600 million years ago</td><td>16 in</td></tr>
+          <tr><td>Cambrian Explosion</td><td>541 million years ago</td><td>14.2 in</td></tr>
+          <tr><td>First land plants</td><td>470 million years ago</td><td>12.4 in</td></tr>
+          <tr><td>First land animals</td><td>400 million years ago</td><td>10.5 in</td></tr>
+          <tr><td>Dinosaurs appear</td><td>230 million years ago</td><td>6.1 in</td></tr>
+          <tr><td>Dinosaurs go extinct</td><td>66 million years ago</td><td>1.7 in</td></tr>
+          <tr><td>Mammals dominate</td><td>65 million years ago</td><td>1.7 in</td></tr>
+          <tr><td>First humans</td><td>300,000 years ago</td><td>almost touching the end</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout"><strong>Notice:</strong> Almost all of the “action” students usually think about will be crowded at the very end. That is the point. The scale should make that obvious.</div>
+
+      <div class="timeline-strip" aria-label="Timeline eras preview">
+        <div>Precambrian</div>
+        <div>Early Life</div>
+        <div>Complex Life</div>
+        <div>Paleozoic</div>
+        <div>Mesozoic</div>
+        <div>Cenozoic</div>
+      </div>
+    </section>
+
+    <section class="card" id="part2">
+      <h2>Part 2: Human History Zoom-In</h2>
+      <p>Create a separate zoom timeline showing the last <strong>20,000 years</strong> of human history. This should help viewers see details that are impossible to show clearly on the main geologic timeline.</p>
+      <div class="scale-box">
+        <div class="mini"><strong>Recommended Length</strong>About 20 inches</div>
+        <div class="mini"><strong>Zoom Scale</strong>1 inch = 1,000 years</div>
+        <div class="mini"><strong>Goal</strong>Show how recent human history is</div>
+      </div>
+
+      <h3>Required Human History Events</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Approximate Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>End of last Ice Age</td><td>20,000 years ago</td></tr>
+          <tr><td>Agriculture begins</td><td>10,000 years ago</td></tr>
+          <tr><td>First cities</td><td>6,000 years ago</td></tr>
+          <tr><td>Pyramids of Giza</td><td>about 4,500 years ago</td></tr>
+          <tr><td>Ancient Greece</td><td>about 2,500 years ago</td></tr>
+          <tr><td>Roman Empire</td><td>about 2,000 years ago</td></tr>
+          <tr><td>Pompeii erupts</td><td>79 AD</td></tr>
+          <tr><td>Middle Ages</td><td>about 1,000 years ago</td></tr>
+          <tr><td>Printing press</td><td>1440</td></tr>
+          <tr><td>Scientific Revolution</td><td>1500s–1700s</td></tr>
+          <tr><td>Industrial Revolution</td><td>1700s–1800s</td></tr>
+          <tr><td>World War I</td><td>1914</td></tr>
+          <tr><td>World War II</td><td>1939</td></tr>
+          <tr><td>Moon landing</td><td>1969</td></tr>
+          <tr><td>Internet age</td><td>1990s</td></tr>
+          <tr><td>Today</td><td>present</td></tr>
+        </tbody>
+      </table>
+      <p><strong>You must also add 3 extra events</strong> of your choice. These can be scientific breakthroughs, inventions, cultural landmarks, or major world events.</p>
+    </section>
+
+    <section class="card" id="steps">
+      <h2>Project Directions</h2>
+      <ol class="steps">
+        <li><div><strong>Set up the main timeline.</strong><br>Measure the full 10 feet. Label the far left as Earth forming and the far right as present day.</div></li>
+        <li><div><strong>Lightly mark the major geologic events.</strong><br>Use the scale provided. Check your placements before decorating.</div></li>
+        <li><div><strong>Add labels and short descriptions.</strong><br>Each required event should be clearly named and easy to read.</div></li>
+        <li><div><strong>Add visuals.</strong><br>Use icons, sketches, color coding, or small illustrations that actually help explain the timeline.</div></li>
+        <li><div><strong>Create the human history zoom.</strong><br>Use the second scale to show the last 20,000 years in more detail.</div></li>
+        <li><div><strong>Answer the reflection questions.</strong><br>These should show that you understand why scale matters.</div></li>
+      </ol>
+
+      <h3>Reflection Questions</h3>
+      <ol>
+        <li>Why is human history so small compared to geologic time?</li>
+        <li>What surprised you most while building your timeline?</li>
+        <li>Why do scientists divide Earth’s history into sections?</li>
+      </ol>
+
+      <h3>Partner Roles</h3>
+      <ul>
+        <li><strong>Partner A: Scale Manager</strong> — handles measurements, placement, and checking scale</li>
+        <li><strong>Partner B: Design Lead</strong> — handles visuals, labels, and layout</li>
+      </ul>
+      <p>Both partners are responsible for understanding the project and completing the reflection questions.</p>
+    </section>
+
+    <section class="card" id="rubric">
+      <h2>Rubric</h2>
+      <div class="rubric-grid">
+        <div class="rubric-card">
+          <h3>Accuracy</h3>
+          <p>Events are correct, labels are clear, and information matches class learning and project requirements.</p>
+          <div class="score">10 points</div>
+        </div>
+        <div class="rubric-card">
+          <h3>Visual Quality</h3>
+          <p>Timeline is neat, readable, organized, and visually engaging. Color and visuals help the viewer understand the content.</p>
+          <div class="score">10 points</div>
+        </div>
+        <div class="rubric-card">
+          <h3>Scale</h3>
+          <p>The geologic timeline and human zoom are placed to scale using the correct measurements.</p>
+          <div class="score">10 points</div>
+        </div>
+        <div class="rubric-card">
+          <h3>Completion</h3>
+          <p>All required geologic events, human history events, and 3 extra events are included.</p>
+          <div class="score">5 points</div>
+        </div>
+        <div class="rubric-card">
+          <h3>Reflection</h3>
+          <p>Responses are thoughtful and show understanding of the purpose of the project.</p>
+          <div class="score">5 points</div>
+        </div>
+      </div>
+      <h3>Total: 40 points</h3>
+    </section>
+
+    <section class="card">
+      <h2>3-Day Project Plan</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>Focus</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Day 1</td><td>Set scale, build the 10-foot geologic timeline, place major events</td></tr>
+          <tr><td>Day 2</td><td>Finish geologic timeline, create the human history zoom, add visuals</td></tr>
+          <tr><td>Day 3</td><td>Complete reflections, final touches, gallery walk or share-out</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Geologic Timeline Project · Earth Science · Built for classroom use
+  </footer>
+</body>
+</html>
